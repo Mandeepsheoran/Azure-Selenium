@@ -20,7 +20,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DockerStandAloneBrowser {
 	static WebDriver driver = null;
-	@Test
+	@Test(enabled=false)
 	public static void localrun() {
 		WebDriverManager.chromedriver().setup();
 		driver =  (WebDriver) new ChromeDriver();
@@ -37,7 +37,7 @@ public class DockerStandAloneBrowser {
 		System.out.println("Execution completed hence closing the driver now");
 		driver.quit();
 	}
-	@Test(enabled=false)
+	@Test
 	public static void dockerrunchrome() throws MalformedURLException {
 		System.out.println("Starting the test now in chrome");
 		DesiredCapabilities cap = new DesiredCapabilities();
