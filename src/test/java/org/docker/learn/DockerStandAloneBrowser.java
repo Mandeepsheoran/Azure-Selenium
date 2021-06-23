@@ -20,7 +20,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DockerStandAloneBrowser {
 	static WebDriver driver = null;
-	@Test(enabled=false)
+	@Test
 	public static void localrun() {
 		WebDriverManager.chromedriver().setup();
 		driver =  (WebDriver) new ChromeDriver();
