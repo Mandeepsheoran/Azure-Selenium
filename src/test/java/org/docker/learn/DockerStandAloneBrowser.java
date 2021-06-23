@@ -20,7 +20,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DockerStandAloneBrowser {
 	static WebDriver driver = null;
-	@Test
+	@Test(enabled=false)
 	public static void localrun() {
 		WebDriverManager.chromedriver().setup();
 		driver =  (WebDriver) new ChromeDriver();
@@ -37,7 +37,29 @@ public class DockerStandAloneBrowser {
 		System.out.println("Execution completed hence closing the driver now");
 		driver.quit();
 	}
-	@Test
+		@Test
+	public static void localrunHeadlessChrome() {		
+		System.out.println("Running test on local with headless chrome browser");
+		WebDriverManager.chromedriver().setup();
+		ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--headless");
+        driver = new ChromeDriver(chromeOptions);
+        String baseUrl = "https://evisa.rop.gov.om/en/evisalogin";
+		driver.get(baseUrl);
+		System.out.println("MOved to evisa login page");
+		String actualTitle= driver.getTitle();
+		System.out.println(actualTitle);
+		String expectedTitle = "evisalogin - Evisa";
+		if (actualTitle.contentEquals(expectedTitle)) {
+			System.out.println("Test passed");
+		} else {
+			System.out.println("Test Failed");
+		}
+		System.out.println("Execution completed hence closing the driver now");
+		driver.quit();
+	}
+	@Test(enabled=false)
 	public static void dockerrunchrome() throws MalformedURLException {
 		System.out.println("Starting the test now in chrome");
 		DesiredCapabilities cap = new DesiredCapabilities();
