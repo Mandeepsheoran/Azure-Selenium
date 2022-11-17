@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: selhub-service
+  labels:
+    app: selhub-service
+spec:
+  selector:
+    app: selenium-hub
+  ports:
+  - port: 4444
+    nodePort: 30001
+  type: NodePort
